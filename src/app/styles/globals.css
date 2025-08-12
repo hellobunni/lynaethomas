@@ -111,6 +111,7 @@
   --color-surface: var(--surface);
   --color-elevated: var(--elevated);
   --color-muted: var(--muted);
+  --color-secondary: v#ebe0f5;
 
   --color-border: var(--border);
   --color-ring: var(--focus-ring);

@@ -101,6 +101,7 @@ export const Header = ({ user, onLogin, navItems, onLogout, onCreateAccount }: H
             )}
           </button>
           <div className="md:hidden">
+            {/* TODO: Add mobile menu */}
             <button>
               <Menu strokeWidth={1.25} className="w-6 h-6" />
             </button>
