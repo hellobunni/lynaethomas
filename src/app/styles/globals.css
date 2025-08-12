@@ -1,25 +1,171 @@
 @import 'tailwindcss';
 
+/* ===========================
+   Base palette (fixed values)
+   =========================== */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand purples */
+  --white: #ffffff;
+  --magnolia: #ebe6ef;
+  --thistle: #d7ccdf;
+  --pale-purple: #ece0f5;
+  --thistle-2: #d8c1eb;
+  --wisteria: #c5a3e1;
+  --lavender-floral: #a874d2;
+  --dark-purple: #372246;
+  --dark-purple-2: #230c33;
+  --black: #000000;
+
+  /* Semantic light surfaces and content */
+  --bg: #ffffff;
+  --surface: #faf9fb; /* soft lilac-tinted canvas */
+  --elevated: #ffffff; /* cards, modals */
+  --muted: #f2edf7; /* subtle chips, pills */
+  --border: #e7e1ee;
+  --ring: #cab3e7;
+
+  --content: #171717; /* primary text */
+  --content-muted: #6b6772; /* secondary text */
+  --link: #6b4fcf; /* readable on white */
+
+  /* Brand role */
+  --brand: var(--lavender-floral);
+  --brand-foreground: #ffffff;
+
+  /* Focus states */
+  --focus-ring: var(--ring);
+
+  /* Typography */
+  --font-sans: var(
+    --font-noto-sans,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    Inter,
+    'Noto Sans',
+    Arial,
+    Helvetica,
+    sans-serif
+  );
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-noto-sans);
+/* Optional: attribute-based dark mode. Toggle with <html data-theme="dark"> */
+:root[data-theme='dark'] {
+  --bg: #0a0a0a;
+  --surface: #0f0b14; /* deep eggplant */
+  --elevated: #14101a;
+  --muted: #1b1425;
+  --border: #2a1f37;
+  --ring: #6f55c9;
+
+  --content: #ededed;
+  --content-muted: #bfb8c9;
+  --link: #b89af3;
+
+  --brand: var(--lavender-floral);
+  --brand-foreground: #0b0711;
 }
 
+/* If you prefer system dark mode without attributes, keep this too */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  :root:not([data-theme]) {
+    --bg: #0a0a0a;
+    --surface: #0f0b14;
+    --elevated: #14101a;
+    --muted: #1b1425;
+    --border: #2a1f37;
+    --ring: #6f55c9;
+
+    --content: #ededed;
+    --content-muted: #bfb8c9;
+    --link: #b89af3;
+
+    --brand: var(--lavender-floral);
+    --brand-foreground: #0b0711;
   }
 }
 
+/* ==================================================
+     Tailwind v4 tokens via @theme (readable namespaces)
+     ================================================== */
+@theme inline {
+  /* Brand scale mapped from your palette */
+  --color-brand-50: var(--magnolia); /* #ebe6ef */
+  --color-brand-100: var(--pale-purple); /* #ece0f5 */
+  --color-brand-200: var(--thistle); /* #d7ccdf */
+  --color-brand-300: var(--thistle-2); /* #d8c1eb */
+  --color-brand-400: var(--wisteria); /* #c5a3e1 */
+  --color-brand-500: var(--lavender-floral); /* #a874d2 */
+  --color-brand-600: #8f61c2; /* computed mid step */
+  --color-brand-700: var(--dark-purple); /* #372246 */
+  --color-brand-800: var(--dark-purple-2); /* #230c33 */
+  --color-brand-900: var(--dark-purple-2); /* kept same for depth */
+
+  /* Semantic aliases */
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+
+  --color-background: var(--bg);
+  --color-surface: var(--surface);
+  --color-elevated: var(--elevated);
+  --color-muted: var(--muted);
+
+  --color-border: var(--border);
+  --color-ring: var(--focus-ring);
+
+  --color-content: var(--content);
+  --color-content-muted: var(--content-muted);
+  --color-link: var(--link);
+
+  /* Neutrals */
+  --color-white: var(--white);
+  --color-black: var(--black);
+
+  /* Fonts */
+  --font-sans: var(--font-sans);
+}
+
+/* ===========================
+     Base element styles
+     =========================== */
+html,
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-noto-sans), Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--content);
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+/* Smooth transitions for theme switching */
+* {
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+a {
+  color: var(--link);
+}
+
+/* Example component tokens (optional helpers) */
+.button-primary {
+  background: var(--color-brand);
+  color: var(--color-brand-foreground);
+  border-color: var(--color-border);
+}
+.card {
+  background: var(--color-elevated);
+  border: 1px solid var(--color-border);
+}
+.badge-soft {
+  background: var(--color-brand-50);
+  color: var(--color-brand-700);
+  border: 1px solid var(--color-border);
 }

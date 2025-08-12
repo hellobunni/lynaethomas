@@ -1,5 +1,4 @@
 import type { StorybookConfig } from "@storybook/nextjs-vite";
-import "../src/app/styles/globals.css";
 
 const config: StorybookConfig = {
   "stories": [

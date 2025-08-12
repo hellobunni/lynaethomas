@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import {  Noto_Sans } from "next/font/google";
 import "./styles/globals.css";
+import { ThemeProvider } from "./components/ThemeProvider";
+import { Header } from "@/stories/Header/Header";
 
 const notoSans = Noto_Sans({
   variable: "--font-noto-sans",
@@ -21,10 +23,30 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var theme = localStorage.getItem('theme');
+                  var systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                  if (theme === 'dark' || (!theme && systemPrefersDark)) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                  }
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
+      </head>
       <body
         className={`${notoSans.variable} antialiased`}
       >
-        {children}
+        <ThemeProvider>
+          <Header/>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

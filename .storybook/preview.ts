@@ -17,6 +17,23 @@ const preview: Preview = {
       test: 'todo'
     }
   },
+  decorators: [
+    (Story) => {
+      // Ensure theme is initialized for Storybook
+      if (typeof window !== 'undefined') {
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        } else {
+          document.documentElement.removeAttribute('data-theme');
+        }
+      }
+      
+      return Story();
+    },
+  ],
 };
 
 export default preview;

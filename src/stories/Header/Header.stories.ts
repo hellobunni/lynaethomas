@@ -31,4 +31,31 @@ export const LoggedIn: Story = {
   },
 };
 
+export const WithNavItems: Story = {
+  args: { 
+    navItems: [
+      { label: 'Blog', href: '/' },
+      { label: 'About', href: '/about' },
+      { label: 'Work With Me', href: '/services' },
+      { label: 'Contact', href: '/contact' },
+    ],
+  },
+};
+
 export const LoggedOut: Story = {};
+
+export const ThemeToggle: Story = {
+  args: {
+    navItems: [
+      { label: 'Home', href: '/' },
+      { label: 'About', href: '/about' },
+    ],
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'This story showcases the dark/light mode toggle functionality. Click the theme button to switch between themes.',
+      },
+    },
+  },
+};
