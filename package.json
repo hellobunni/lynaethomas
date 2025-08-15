@@ -12,6 +12,8 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@payloadcms/db-mongodb": "^3.52.0",
+    "@payloadcms/next-payload": "^0.1.11",
     "@radix-ui/react-label": "^2.1.7",
     "@radix-ui/react-select": "^2.2.5",
     "@visx/visx": "^3.12.0",
@@ -20,8 +22,10 @@
     "dayjs": "^1.11.13",
     "jotai": "^2.12.5",
     "lucide-react": "^0.539.0",
+    "mongodb": "^6.18.0",
     "motion": "^12.20.1",
     "next": "15.3.4",
+    "payload": "^3.52.0",
     "radix-ui": "^1.4.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

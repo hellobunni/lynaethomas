@@ -1,54 +1,133 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
-
 import { fn } from 'storybook/test';
-
 import { Button } from './Button';
+import { Rocket, Sparkles, Camera, Heart, ArrowRight, Download } from 'lucide-react';
 
-// More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
-  title: 'Example/Button',
+  title: 'Components/Button',
   component: Button,
   parameters: {
-    // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
     layout: 'centered',
   },
-  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],
-  // More on argTypes: https://storybook.js.org/docs/api/argtypes
   argTypes: {
-    backgroundColor: { control: 'color' },
+    variant: {
+      control: 'select',
+      options: ['primary', 'secondary', 'destructive', 'ghost', 'outline', 'tertiary'],
+    },
+    size: {
+      control: 'select',
+      options: ['xs', 'sm', 'md', 'lg', 'xl'],
+    },
+    disabled: {
+      control: 'boolean',
+    },
   },
-  // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
-  args: { onClick: fn() },
+  args: { 
+    onClick: fn(),
+    label: 'Button',
+  },
 } satisfies Meta<typeof Button>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
+// Variant stories
 export const Primary: Story = {
   args: {
-    primary: true,
-    label: 'Button',
+    variant: 'primary',
   },
 };
 
 export const Secondary: Story = {
   args: {
-    label: 'Button',
+    variant: 'secondary',
+  },
+};
+
+export const Destructive: Story = {
+  args: {
+    variant: 'destructive',
+  },
+};
+
+export const Ghost: Story = {
+  args: {
+    variant: 'ghost',
+  },
+};
+
+export const Outline: Story = {
+  args: {
+    variant: 'outline',
+  },
+};
+
+export const Tertiary: Story = {
+  args: {
+    variant: 'tertiary',
+  },
+};
+
+// Size stories
+export const Small: Story = {
+  args: {
+    size: 'sm',
   },
 };
 
 export const Large: Story = {
   args: {
-    size: 'large',
-    label: 'Button',
+    size: 'lg',
   },
 };
 
-export const Small: Story = {
+export const ExtraLarge: Story = {
   args: {
-    size: 'small',
-    label: 'Button',
+    size: 'xl',
+  },
+};
+
+// State stories
+export const Disabled: Story = {
+  args: {
+    disabled: true,
+  },
+};
+
+export const WithIcons: Story = {
+  args: {
+    iconBefore: Rocket,
+    iconAfter: Sparkles,
+  },
+};
+
+export const WithIconBefore: Story = {
+  args: {
+    iconBefore: Camera,
+    label: 'Take Photo',
+  },
+};
+
+export const WithIconAfter: Story = {
+  args: {
+    iconAfter: ArrowRight,
+    label: 'Continue',
+  },
+};
+
+export const DownloadButton: Story = {
+  args: {
+    iconBefore: Download,
+    label: 'Download File',
+    variant: 'outline',
+  },
+};
+
+export const LikeButton: Story = {
+  args: {
+    iconBefore: Heart,
+    label: 'Like',
+    variant: 'ghost',
   },
 };

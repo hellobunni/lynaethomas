@@ -1,5 +1,5 @@
 'use client'
-import { ReactNode } from 'react';
+import React, { ReactNode, forwardRef } from 'react';
 
 export interface ButtonProps {
   /** Button variant style */
@@ -7,7 +7,7 @@ export interface ButtonProps {
   /** How large should the button be? */
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
   /** Button contents */
-  label: string;
+  label?: string;
   /** Icon to display before the label */
   iconBefore?: ReactNode;
   /** Icon to display after the label */
@@ -21,10 +21,14 @@ export interface ButtonProps {
   /** Optional type attribute */
   type?: 'button' | 'submit' | 'reset';
   className?: string;
+  /** Render as child element instead of button */
+  asChild?: boolean;
+  /** Children elements when using asChild */
+  children?: ReactNode;
 }
 
 /** Primary UI component for user interaction */
-export const Button = ({
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
   variant = 'primary',
   size = 'md',
   backgroundColor,
@@ -33,8 +37,10 @@ export const Button = ({
   iconAfter,
   disabled = false,
   type = 'button',
+  asChild = false,
+  children,
   ...props
-}: ButtonProps) => {
+}, ref) => {
   // Base button classes
   const baseClasses = 'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium cursor-pointer ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0';
   
@@ -65,8 +71,19 @@ export const Button = ({
     props.className // Add custom classes at the end so they can override defaults
   ].filter(Boolean).join(' ');
 
+  // If asChild is true, clone the child with our classes
+  if (asChild && children) {
+    const child = children as React.ReactElement<any>;
+    return React.cloneElement(child, {
+      className: [className, child.props.className].filter(Boolean).join(' '),
+      ...props
+    });
+  }
+
+  // Default button rendering
   return (
     <button
+      ref={ref}
       type={type}
       className={className}
       disabled={disabled}
@@ -79,4 +96,6 @@ export const Button = ({
       {iconAfter && <span className="flex-shrink-0">{iconAfter}</span>}
     </button>
   );
-};
+});
+
+Button.displayName = 'Button';

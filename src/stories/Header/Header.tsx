@@ -69,8 +69,8 @@ export const Header = ({ user, onLogin, navItems, onLogout, onCreateAccount }: H
 
   return (
     <header>
-      <div className="storybook-header">
-        <div className="flex items-center">
+      <div className="flex items-center justify-between px-6 py-4">
+        <div className="flex items-center w-fit gap-x-2">
           <div className="rounded-sm bg-brand px-2.5 py-1 text-white font-semibold w-fit h-fit flex items-center justify-center">
             L
           </div>
@@ -80,7 +80,7 @@ export const Header = ({ user, onLogin, navItems, onLogout, onCreateAccount }: H
           {navItems && (
             <div className="items-center gap-10 hidden md:flex">
               {navItems.map((item) => (
-                <Link key={item.href} href={item.href} className="text-sm text-link hover:text-gray-700">
+                <Link key={item.href} href={item.href} className="text-base text-link hover:text-gray-700">
                   {item.label}
                 </Link>
               ))}
