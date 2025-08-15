@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import BlogSubscription from './BlogSubscription'
 import { Button } from '@/stories/Button';
-import { Github, Twitter, Linkedin, Instagram, Mail, Send, Heart} from 'lucide-react';
+import { Github, Twitter, Linkedin, Instagram, Mail, Send, Heart, PlusIcon} from 'lucide-react';
 import { Input } from '@/stories/Fields/InputFields/InputFields';
 import Link from "next/link";
 
@@ -83,9 +83,13 @@ const Footer = () => {
                   required
                   className="flex-1"
                 />
-                          <button type="submit" className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-brand-500 text-white px-8 py-2 hover:bg-brand-600 cursor-pointer">View My Work 
-                          <Send className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
-                          </button>
+                <Button 
+                type="button"
+  label="View My Work" 
+  iconAfter={<Send />} 
+  variant="primary"
+  size="md"
+/>
               
               </form>
             )}

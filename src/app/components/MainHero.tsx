@@ -46,12 +46,9 @@ const MainHero = () => {
         </div>
          {/* Call to action buttons */}
          <div className="mt-12 flex flex-col sm:flex-row gap-4 justify-center">
-          <div className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-brand-500 text-white px-8 py-2 hover:bg-brand-600 cursor-pointer">View My Work 
-           </div>
-          
-           <div className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-white text-black px-8 py-2 border border-black/10 hover:bg-black/5 cursor-pointer">
-            Read My Blog
-          </div>
+          <Button label="View My Work" size="lg" />
+          <Button label="Read My Blog" size="lg" variant="secondary" />
+        
         </div>
 
          {/* Stats or social proof */}
